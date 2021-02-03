@@ -72,11 +72,15 @@ class Node
         if ($node->left === null && $node->right === null)
             return null;
         //case 2: node has only left son
-        if ($node->right === null)
+        if ($node->right === null) {
+            $node->left->parent = $node->parent;
             return $node->left;
+        }
         //case 3: node has only right son
-        if ($node->left === null)
+        if ($node->left === null) {
+            $node->right->parent = $node->parent;
             return $node->right;
+        }
         //case 4: node has both sons - swap it with successor
         $successo = $node->successor();
         $tmp = $node->value;
